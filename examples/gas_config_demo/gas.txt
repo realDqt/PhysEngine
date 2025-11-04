@@ -1,0 +1,6 @@
+origin=0,0,0
+vorticity=-0.000002
+diffusion=0.000000
+buoyancy=4.0
+vcEpsilon=5.0
+decreaseDensity=0.001

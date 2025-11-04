@@ -1,0 +1,6 @@
+[submodule "3rdparty/eigen"]
+	path = 3rdparty/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "3rdparty/enoki"]
+	path = 3rdparty/enoki
+	url = https://github.com/mitsuba-renderer/enoki.git
