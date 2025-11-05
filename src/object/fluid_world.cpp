@@ -104,34 +104,6 @@ void FluidWorld::addSandpile() {
     }
 }
 
-void FluidWorld::initViewer(int index, CudaViewer& viewer) {
-    FluidSystem* fluidSystem = fluidArray[index];
-    viewer.useParticleRenderer();
-    viewer.prender->m_pos = (float*)(fluidSystem->pf.getPositionRef()).m_data;
-    viewer.prender->m_size = (fluidSystem->pf.getPositionRef()).size();
-    viewer.prender->m_radius = fluidSystem->getParticleRadius();
-
-    viewer.prender->m_vbo = viewer.createVbo(viewer.prender->m_size * 3 * sizeof(Real));
-    viewer.prender->m_colorVbo = viewer.createVbo(viewer.prender->m_size * 3 * sizeof(Real));
-    viewer.prender->registerVbo();
-}
-
-void FluidWorld::updateViewer(int index, CudaViewer& viewer) {
-    FluidSystem* fluidSystem = fluidArray[index];
-    {
-        vec3r* cudaPtr = (vec3r*)mapGLBufferObject(&viewer.prender->m_cudaVbo);
-        copyArray<vec3r, MemType::GPU, MemType::GPU>(&(cudaPtr), &(fluidSystem->pf.getPositionRef()).m_data, (fluidSystem->pf.getPositionRef()).size());
-        unmapGLBufferObject(viewer.prender->m_cudaVbo);
-    }
-
-    {
-        vec3r* cudaPtr = (vec3r*)mapGLBufferObject(&viewer.prender->m_cudaColorVbo);
-        copyArray<vec3r, MemType::GPU, MemType::GPU>(&(cudaPtr), &(fluidSystem->getColorRef()).m_data, (fluidSystem->pf.getPositionRef()).size());
-        unmapGLBufferObject(viewer.prender->m_cudaColorVbo);
-    }
-
-}
-
 void FluidWorld::update(int index) {
     fluidArray[index]->update(dt);
 }

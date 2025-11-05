@@ -2,7 +2,6 @@
 #include "nuclear_system.h"
 #include "config.h"
 #include <vector>
-#include "cuda_viewer/cuda_viewer.h"
 
 #define GAS_GRID_SIZE 60
 #define NUCLEAR_GRID_SIZE 100
@@ -29,8 +28,6 @@ public:
     Real getAverageDensity(int index);
 
 
-    void initViewer(int index, CudaViewer& viewer);
-    void updateViewer(int index, CudaViewer& viewer);
     void setIfDissipate(int index, bool flag);
     void update(int index);
 
