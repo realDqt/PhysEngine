@@ -250,7 +250,7 @@ macro(use_freeglut_local target_name)
         message(STATUS "Unix/MacOS unsupported yet")
     endif()
     # link_libraries(${freeglut_libs})
-    target_link_libraries(${target_name} PRIVATE ${freeglut_libs})
+    # target_link_libraries(${target_name} PRIVATE ${freeglut_libs})
 endmacro()
 
 macro(add_exe exe_name src_path)

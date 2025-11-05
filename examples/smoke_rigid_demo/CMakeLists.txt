@@ -6,7 +6,6 @@ link_libraries(EngineCudaObject)
 init_variables()
 use_taskflow()
 use_backend_warpper_local()
-# include_and_link()
 
 add_exe(SmokeRigidDemo ${CMAKE_CURRENT_SOURCE_DIR})
 use_freeglut_local(SmokeRigidDemo)
