@@ -5,7 +5,7 @@
 #include <fstream>
 #include <map>
 
-#define LOG_THRES LogType::Debug
+#define LOG_THRES LogTypeKD::Debug
 
 //// filename
 #ifdef __APPLE__
@@ -16,7 +16,7 @@
 
 char* getTimeString();
 
-enum LogType{
+enum LogTypeKD{
     Debug=0,
     Info,
     Warn,
@@ -33,10 +33,10 @@ extern std::string LOG_COLOR_RESET;
     if constexpr (lt < LOG_THRES) ; \
     else std::cout<<LOG_COLORS[(int)lt] << '[' << getTimeString() << "][" << __FILENAME__ << ":" << __LINE__ << "] " << LOG_COLOR_RESET
     
-#define LOG_OSTREAM_DEBUG LOG_OSTREAM(LogType::Debug)
-#define LOG_OSTREAM_INFO LOG_OSTREAM(LogType::Info)
-#define LOG_OSTREAM_WARN LOG_OSTREAM(LogType::Warn)
-#define LOG_OSTREAM_ERROR LOG_OSTREAM(LogType::Error)
+#define LOG_OSTREAM_DEBUG LOG_OSTREAM(LogTypeKD::Debug)
+#define LOG_OSTREAM_INFO LOG_OSTREAM(LogTypeKD::Info)
+#define LOG_OSTREAM_WARN LOG_OSTREAM(LogTypeKD::Warn)
+#define LOG_OSTREAM_ERROR LOG_OSTREAM(LogTypeKD::Error)
 
 
 //// printf log
@@ -44,10 +44,10 @@ extern std::string LOG_COLOR_RESET;
     if(lt < LOG_THRES) ; \
     else { printf("%s[%s][%s:%d]%s "  format, LOG_COLORS[(int)lt], getTimeString(), __FILENAME__, __LINE__, LOG_COLOR_RESET, ##__VA_ARGS__); }
     
-#define LOG_PRINT_DEBUG(format, ...) LOG_PRINT(LogType::Debug)
-#define LOG_PRINT_INFO(format, ...) LOG_PRINT(LogType::Info)
-#define LOG_PRINT_WARN(format, ...) LOG_PRINT(LogType::Warn)
-#define LOG_PRINT_ERROR(format, ...) LOG_PRINT(LogType::Error)
+#define LOG_PRINT_DEBUG(format, ...) LOG_PRINT(LogTypeKD::Debug)
+#define LOG_PRINT_INFO(format, ...) LOG_PRINT(LogTypeKD::Info)
+#define LOG_PRINT_WARN(format, ...) LOG_PRINT(LogTypeKD::Warn)
+#define LOG_PRINT_ERROR(format, ...) LOG_PRINT(LogTypeKD::Error)
 
 /**
  * @brief The Logger class is responsible for logging messages to a file.
@@ -62,7 +62,7 @@ public:
 
     ~Logger();
 
-    void Log(const LogType& type, const std::string& message);
+    void Log(const LogTypeKD& type, const std::string& message);
 
 private:
     std::string logFileName;
@@ -70,10 +70,10 @@ private:
     std::size_t maxFileSize;
     std::size_t currentFileSize;
 
-    std::map<LogType, std::string> logTypeToString = {
-        {LogType::Error, "Error"},
-        {LogType::Warn, "Waring"},
-        {LogType::Info, "Info"}
+    std::map<LogTypeKD, std::string> logTypeToString = {
+        {LogTypeKD::Error, "Error"},
+        {LogTypeKD::Warn, "Waring"},
+        {LogTypeKD::Info, "Info"}
     };
 
     void OpenLogFile();
@@ -86,7 +86,7 @@ private:
 
     std::string GenerateNewFileName();
 
-    void LogMessage(const LogType& type, const std::string& message);
+    void LogMessage(const LogTypeKD& type, const std::string& message);
 };
 
 extern Logger logger;

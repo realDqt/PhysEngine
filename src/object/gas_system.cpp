@@ -203,7 +203,7 @@ void GasSystem::update(Real deltaTime) {
 
 	if (m_windStrength < 0) {
 		printf("��������δ���û����ô���\n");
-		logger.Log(LogType::Error, "��������δ���û����ô���");
+		logger.Log(LogTypeKD::Error, "��������δ���û����ô���");
 		exit(0);
 	}
 

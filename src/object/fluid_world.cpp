@@ -25,13 +25,13 @@ int FluidWorld::initFluidSystem(vec3r center, vec3r scale, Real kvorticity, Real
     vec3r start = center - 0.5 * scale, end = center + 0.5 * scale;
     if (start.x < worldMin.x || start.y < worldMin.y || start.z < worldMin.z ||
         start.x > worldMax.x || start.y > worldMax.y || start.z > worldMax.z) {
-        printf("Ö¸¶¨Î»ÖÃ³¬³öÊÀ½ç·¶Î§£¬²»ÄÜÌí¼ÓË®Ìå£¬Éú³ÉÊ§°Ü\n");
+        printf("Ö¸ï¿½ï¿½Î»ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç·¶Î§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë®ï¿½å£¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½\n");
         return -1;
     }
 
     if (kvorticity < 0 || kviscosity < 0) {
-        printf("²ÎÊý´íÎó£¬²»ÄÜÌí¼ÓË®Ìå£¬Éú³ÉÊ§°Ü\n");
-        logger.Log(LogType::Error, "fluid's property is abnormal");
+        printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë®ï¿½å£¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½\n");
+        logger.Log(LogTypeKD::Error, "fluid's property is abnormal");
         return -1;
     }
 
@@ -43,7 +43,7 @@ int FluidWorld::initFluidSystem(vec3r center, vec3r scale, Real kvorticity, Real
     fluidArray.push_back(fluidSystem);
 
     int id = fluidArray.size() - 1;
-    logger.Log(LogType::Info, "fluid id:" + std::to_string(id));
+    logger.Log(LogTypeKD::Info, "fluid id:" + std::to_string(id));
     return id;
 }
 

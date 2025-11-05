@@ -25,13 +25,13 @@ int GasWorld::initGasSystem(vec3r origin, Real vorticity, Real diffusion, Real b
         origin.y < worldMin.y || origin.y > worldMax.y ||
         origin.z < worldMin.z || origin.z > worldMax.z) {
         printf("???��?��??????����?????????????��???????\n");
-        logger.Log(LogType::Error, "???????����?????????????�^????��???"+std::to_string(origin.x)+"," + std::to_string(origin.y) + "," + std::to_string(origin.z));
+        logger.Log(LogTypeKD::Error, "???????����?????????????�^????��???"+std::to_string(origin.x)+"," + std::to_string(origin.y) + "," + std::to_string(origin.z));
         return -1;
     }
 
     if (vorticity < 0 || diffusion < 0 || vcEpsilon < 0 || decreaseDensity < 0) {
         printf("�������󣬲����������壬����ʧ��\n");
-        logger.Log(LogType::Error, "gas's property is abnormal");
+        logger.Log(LogTypeKD::Error, "gas's property is abnormal");
         return -1;
     }
     LOG_OSTREAM_DEBUG << "add gas at " << "(" << origin.x << "," << origin.y << "," << origin.z <<  ")" << std::endl;
@@ -56,7 +56,7 @@ int GasWorld::initGasSystem(vec3r origin, Real vorticity, Real diffusion, Real b
     gasArray.push_back(gasSystem);
 
     int id = gasArray.size() - 1;
-    logger.Log(LogType::Info, "gas id:" + std::to_string(id));
+    logger.Log(LogTypeKD::Info, "gas id:" + std::to_string(id));
     return id;
 }
 
@@ -75,7 +75,7 @@ int GasWorld::initNuclearSystem(vec3r origin, Real vorticity) {
     useGas = false;
 
     int id = nuclearArray.size() - 1;
-    logger.Log(LogType::Info, "gas id:" + std::to_string(id));
+    logger.Log(LogTypeKD::Info, "gas id:" + std::to_string(id));
     return id;
 }
 
@@ -200,7 +200,7 @@ void GasWorld::setBiochemistry(int index) {
 
 void GasWorld::setWind(Real strength, vec3r direction) {
     if (strength < 0.0f) {
-        logger.Log(LogType::Error, "gas's property is abnormal");
+        logger.Log(LogTypeKD::Error, "gas's property is abnormal");
         exit(-1);
     }
     if (useGas) {

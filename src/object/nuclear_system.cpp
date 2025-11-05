@@ -147,7 +147,7 @@ void NuclearSystem::update(Real deltaTime) {
 
 	if (norm_wind < 0.0f) {
 		printf("��������δ����\n");
-		logger.Log(LogType::Error, "��������δ����");
+		logger.Log(LogTypeKD::Error, "��������δ����");
 		exit(0);
 	}
 

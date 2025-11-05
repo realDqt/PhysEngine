@@ -116,7 +116,7 @@ Logger::~Logger() {
     }
 }
 
-void Logger::Log(const LogType& type, const std::string& message) {
+void Logger::Log(const LogTypeKD& type, const std::string& message) {
     if (logFile.is_open()) {
         CheckFileSize();
         LogMessage(type, message);
@@ -165,7 +165,7 @@ std::string Logger::GenerateNewFileName() {
     return newFileName.str();
 }
 
-void Logger::LogMessage(const LogType& type, const std::string& message) {
+void Logger::LogMessage(const LogTypeKD& type, const std::string& message) {
     time_t rawTime;
     struct tm timeInfo;
     char timestamp[80];
